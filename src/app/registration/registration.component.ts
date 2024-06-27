@@ -27,6 +27,10 @@ export class RegistrationComponent {
   selectedState = '';
   isPasswordFilled = false;
   isPasswordCorrect = false;
+  passwordType1: string = 'password';
+  passwordType2: string = 'password';
+  visibility1 = false;
+  visibility2 = false;
   countries: Country[] = [
     {name: 'India', 
       states: ['Andhra Pradesh', 'Arunachal Pradesh', 
@@ -100,6 +104,24 @@ export class RegistrationComponent {
     this.isPasswordFilled = true;
     if (p === cp)  {
       this.isPasswordCorrect = true;
+    }
   }
-}
+
+  toggleVisibility1(){
+    this.visibility1 = !this.visibility1;
+    if (this.visibility1){
+      this.passwordType1 = 'text';
+    }
+    else this.passwordType1 = 'password';
+  }
+
+  toggleVisibility2(){
+    this.visibility2 = !this.visibility2;
+    if (this.visibility2){
+      this.passwordType2 = 'text';
+    }
+    else this.passwordType2 = 'password';
+  }
+
+
 }

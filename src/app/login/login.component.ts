@@ -10,7 +10,7 @@ export class LoginComponent {
   constructor(private authservice: AuthServiceService){};
   forgotPassword = false;
   visibility = false;
-  refreshInterval = 30000; // 30 seconds
+
   
 
   form = new FormGroup({
