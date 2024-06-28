@@ -22,7 +22,8 @@ export class ShowusersComponent {
   }
 
   updateData(id: any){
-
+    var value = 1;
+    this.router.navigate(['/addusers'], { queryParams: {id: id, value: 1}});
   }
 
   deleteData(id: any){

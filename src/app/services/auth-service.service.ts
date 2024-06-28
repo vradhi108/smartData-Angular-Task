@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 export class AuthServiceService {
 
   constructor(private router: Router) { }
- isAuthenticated:boolean = false;
+  isAuthenticated:boolean = false;
 
   login(username: any, password: any) {
     if (username == 'vradhi108' && password == 'Vradhi@2003') {

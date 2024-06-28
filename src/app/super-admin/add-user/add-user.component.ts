@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
@@ -10,7 +10,29 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 })
 export class AddUserComponent {
 
-  constructor (private router: Router, private ser: AuthServiceService){}
+  constructor (private router: Router, private ser: AuthServiceService, private route: ActivatedRoute) {}
+
+  id: any;
+  value: number = 0;
+
+  ngOnInit(){
+    // this.id = this.route.snapshot.paramMap.get('id');
+    // this.value = this.route.snapshot.paramMap.get('value');
+    // console.log(this.id);
+
+    this.route.queryParams.subscribe(params => {
+      this.id = params['id'];
+      this.value = params['value'];
+      console.log('ID from query params:', this.id);
+      console.log('value', this.value);
+    
+      // Now you can use the id as needed in your component
+  });
+  console.log(this.id);
+  console.log(this.value);
+
+  this.edituser();
+}
 
   adduser = new FormGroup({
     userid: new FormControl('', Validators.required),
@@ -60,4 +82,50 @@ export class AddUserComponent {
   logout(){
     this.ser.logoutAdmin();
   }
+   obj: any;
+  edituser(){
+    const getlist = localStorage.getItem('users');
+    this.newuser = getlist !== null ? JSON.parse(getlist) : null;
+    // var present = this.newuser.some((i: { userid: string | null | undefined; }) => i.userid === this.id);
+    
+      
+      this.newuser.forEach((element: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; }) => {
+        if (element.userid === this.id){
+          this.obj = {
+            userid: element.userid,
+            firstname: element.firstname,
+            lastname: element.lastname,
+            emailid: element.emailid,
+            phonenumber: element.phonenumber
+          }
+        }
+        
+      });
+      console.log(this.obj);
+
+      this.adduser.patchValue(this.obj);
+      
+  }
+
+
+  confirmEdit(){
+    this.newuser.forEach((element: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; }) => {
+      if (element.userid === this.id){
+        element.userid = this.adduser.value.userid,
+        element.firstname = this.adduser.value.firstname,
+        element.lastname = this.adduser.value.lastname,
+        element.emailid = this.adduser.value.emailid,
+        element.phonenumber = this.adduser.value.phonenumber
+      }
+      
+      
+    });
+
+      localStorage.setItem('users', JSON.stringify(this.newuser));
+      alert('User edited.')
+     
+  }
+
+
+
 }
