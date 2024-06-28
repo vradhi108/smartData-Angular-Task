@@ -53,6 +53,7 @@ a:hover {
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 2rem;
   }
   
   th, td {
@@ -62,15 +63,21 @@ table {
     background-color: #3e8e41;
   }
   
-  /* Table item styles */
-  td {
-    background-color: #4CAF50;
-    color: white;
-    transition: background-color 0.3s ease;
-  }
-  
   /* Hover effect */
-  td:hover {
-    cursor: pointer;
-  }
+
   
+  .text-success:hover {
+    color: #4CAF50 !important;
+}
+
+.text-success-dark {
+    color: #3e8e41 !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: #e6e6e6;
+}

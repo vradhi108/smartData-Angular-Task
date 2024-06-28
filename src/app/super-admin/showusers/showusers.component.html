@@ -20,25 +20,25 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>User Id</th>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th>Email Id</th>
-                    <th>Phone number</th>
-                    <th>Edit</th>
-                    <th>Remove</th>
+                    <th class="text-success-dark">User Id</th>
+                    <th class="text-success-dark">First name</th>
+                    <th class="text-success-dark">Last name</th>
+                    <th class="text-success-dark">Email Id</th>
+                    <th class="text-success-dark">Phone number</th>
+                    <th class="text-success-dark">Edit</th>
+                    <th class="text-success-dark">Remove</th>
                 </tr>
             </thead>
         
             <tbody>
                 <tr *ngFor="let item of getusers">
-                    <td>{{item.userid}}</td>
-                    <td>{{item.firstname}}</td>
-                    <td>{{item.lastname}}</td>
-                    <td>{{item.emailid}}</td>
-                    <td>{{item.phonenumber}}</td>
-                    <td><button class="btn btn-success" (click)="updateData(item.id)">Edit</button></td>
-                    <td><button class="btn btn-danger" (click)="deleteData(item.id)">Remove</button></td>
+                    <td class="text-success">{{item.userid}}</td>
+                    <td class="text-success">{{item.firstname}}</td>
+                    <td class="text-success">{{item.lastname}}</td>
+                    <td class="text-success">{{item.emailid}}</td>
+                    <td class="text-success">{{item.phonenumber}}</td>
+                    <td class="text-success"><button class="btn btn-success" (click)="updateData(item.id)">Edit</button></td>
+                    <td class="text-success"><button class="btn btn-danger" (click)="deleteData(item.id)">Remove</button></td>
                 </tr>
             </tbody>
             
