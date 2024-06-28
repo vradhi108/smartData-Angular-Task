@@ -18,6 +18,7 @@ export const authLoginGuard: CanActivateFn = (route, state) => {
     console.log("im in authguard checking its working or not");
     return true;
   }
-  return false;
+  else return false;
+
   
 };

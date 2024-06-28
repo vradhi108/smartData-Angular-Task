@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-add-user',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AddUserComponent {
 
-  constructor (private router: Router){}
+  constructor (private router: Router, private ser: AuthServiceService){}
 
   adduser = new FormGroup({
     userid: new FormControl('', Validators.required),
@@ -30,20 +31,22 @@ export class AddUserComponent {
       phonenumber: this.adduser.value.phonenumber
     }
     let user:any = [];
-    // console.log(list);
     if (localStorage.getItem('users') == null) localStorage.setItem('users', JSON.stringify(user));
     
     const getlist = localStorage.getItem('users');
     this.newuser = getlist !== null ? JSON.parse(getlist) : null;
-    this.alreadyPresent = this.newuser.some((i: { userid: string | null | undefined; }) => i.userid === obj.userid);
+    this.alreadyPresent = this.newuser.some((i: { userid: string | null | undefined; }) => i.userid === obj.userid) || 
+    this.newuser.some((i: { emailid: string | null | undefined; }) => i.emailid === obj.emailid) ||
+    this.newuser.some((i: { phonenumber: string | null | undefined; }) => i.phonenumber === obj.phonenumber);
+
     if (!this.alreadyPresent){
       this.newuser.push(obj);
       localStorage.setItem('users', JSON.stringify(this.newuser));
+      alert('User added.')
     }
-    
-    // this.route.navigate(['/listuser'])
-
-    
+    else{
+      alert('The user is already present.')
+    }
   }
 
   navigateAdduser(){
@@ -53,6 +56,8 @@ export class AddUserComponent {
   navigateshowUsers(){
     this.router.navigate(['/showusers']);
   }
-
-
+  
+  logout(){
+    this.ser.logoutAdmin();
+  }
 }

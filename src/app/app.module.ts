@@ -11,6 +11,7 @@ import { BlockCopyPasteDirective } from './Directives/copy-paste-block.directive
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SuperAdminRoutingModule } from './super-admin/super-admin-routing.module';
 import { SuperAdminModule } from './super-admin/super-admin.module';
+import {NavbarHeaderComponent} from './Headers/navbar-header/navbar.header';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { SuperAdminModule } from './super-admin/super-admin.module';
     RegistrationComponent,
     BlockCopyPasteDirective,
     ForgotPasswordComponent,
+    NavbarHeaderComponent
   ],
   imports: [
     BrowserModule,

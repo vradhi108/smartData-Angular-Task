@@ -26,9 +26,31 @@ export class AuthServiceService {
     console.log("this is called by authguard");
     return this.isAuthenticated;
   }
+  isAdminAuthenticated = false;
+
+  adminLogin(username: any, password: any){
+    if (username == 'admin' && password == 'Pass@123'){
+      localStorage.setItem('AdminToken','Admin')
+      this.isAdminAuthenticated = true;
+      this.router.navigate(['/addusers']);
+    }
+    else{
+      this.router.navigate(['./adminlogin']);
+    }
+  }
+
+  isAuthenticatedAdmin(){
+    return this.isAdminAuthenticated;
+  }
 
   logout(){
     this.isAuthenticated=false;
     localStorage.removeItem('Token');
+  }
+
+  logoutAdmin(){
+    this.isAdminAuthenticated= false;
+    localStorage.removeItem('AdminToken');
+    this.router.navigate(['/adminlogin']);
   }
 }

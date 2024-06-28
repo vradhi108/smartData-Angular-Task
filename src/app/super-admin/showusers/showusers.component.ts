@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { interval, startWith } from 'rxjs';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-showusers',
@@ -9,7 +10,7 @@ import { interval, startWith } from 'rxjs';
 })
 export class ShowusersComponent {
 
-  constructor (private router: Router){}
+  constructor (private router: Router, private ser: AuthServiceService){}
 
   getusers:any;
   data = new Array<Object> ();
@@ -38,5 +39,9 @@ export class ShowusersComponent {
 
   navigateshowUsers(){
     this.router.navigate(['/showusers']);
+  }
+
+  logout(){
+    this.ser.logoutAdmin();
   }
 }
