@@ -1,0 +1,120 @@
+.formTask{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-display{
+    padding-left: 30rem;
+}
+
+.addtaskbtn{
+    margin-left: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.3rem;
+}
+
+.todo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.myform{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+}
+.mb-3 {
+    margin-bottom: 0.5rem !important;
+}
+// .boundary{
+//     padding-left: 6rem;
+//     padding-right: 6rem;
+//     padding-top: 1rem;
+//     padding-bottom: 1rem;
+//     // border: solid 2px rgb(59, 59, 189);
+//     // border-radius: 3rem;
+// }
+
+// .button-center{
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+// .btni{
+//     padding-left: 2rem;
+//     padding-right: 2rem;
+// }
+
+.nav-display{
+    padding-left: 30rem;
+}
+
+// h2{
+//     color: rgb(55, 55, 204);
+// }
+
+nav{
+    text-align: center;
+}
+
+.nav-display {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.myform {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+.form-control {
+    border-color: #4CAF50;
+}
+
+.error {
+    color: red;
+}
+
+.btni {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    transition: background-color 0.3s, color 0.3s;
+    color: white;
+}
+
+.btni:hover {
+    background-color: #3e8e41;
+    color: white;
+}
+
+.button-center {
+    text-align: center;
+}
+
+a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #3e8e41;
+}
+
+.btni:disabled{
+    background-color: #3e8e41;
+    border-color: #4CAF50;
+}
+

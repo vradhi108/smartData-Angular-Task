@@ -9,7 +9,8 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { BlockCopyPasteDirective } from './Directives/copy-paste-block.directive';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-
+import { SuperAdminRoutingModule } from './super-admin/super-admin-routing.module';
+import { SuperAdminModule } from './super-admin/super-admin.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,12 +18,14 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     UserPageComponent,
     RegistrationComponent,
     BlockCopyPasteDirective,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SuperAdminRoutingModule,
+    SuperAdminModule
     
   ],
   providers: [],

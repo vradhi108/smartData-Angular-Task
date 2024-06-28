@@ -5,13 +5,14 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { authLoginGuard } from './auth-login.guard';
 import { RegistrationComponent } from './registration/registration.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-
+import {SuperAdminRoutingModule} from './super-admin/super-admin-routing.module'
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
   {path: 'userpage', component: UserPageComponent, canActivate: [authLoginGuard]},
   {path: 'registration', component: RegistrationComponent},
-  {path: 'forgotPassword', component: ForgotPasswordComponent}
+  {path: 'forgotPassword', component: ForgotPasswordComponent},
+  { path: 'superAdmin', loadChildren: () => import('./super-admin/super-admin-routing.module').then(m => m.SuperAdminRoutingModule) }
 ];
 
 @NgModule({
