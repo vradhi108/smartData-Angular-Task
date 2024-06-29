@@ -16,9 +16,6 @@ export class AddUserComponent {
   value: number = 0;
 
   ngOnInit(){
-    // this.id = this.route.snapshot.paramMap.get('id');
-    // this.value = this.route.snapshot.paramMap.get('value');
-    // console.log(this.id);
 
     this.route.queryParams.subscribe(params => {
       this.id = params['id'];
@@ -125,7 +122,5 @@ export class AddUserComponent {
       alert('User edited.')
      
   }
-
-
 
 }

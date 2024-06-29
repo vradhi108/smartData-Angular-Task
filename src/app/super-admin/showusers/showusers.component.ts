@@ -27,7 +27,14 @@ export class ShowusersComponent {
   }
 
   deleteData(id: any){
-
+    this.getusers.forEach((element: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; }) => {
+      if (element.userid === id){
+        this.getusers = this.getusers.filter((user: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; }) => user.userid != id);
+      }
+    });
+    console.log(this.getusers);
+    localStorage.setItem('users', JSON.stringify(this.getusers));
+    
   }
 
   startAutoRefresh() {
@@ -45,4 +52,6 @@ export class ShowusersComponent {
   logout(){
     this.ser.logoutAdmin();
   }
+
+  
 }
