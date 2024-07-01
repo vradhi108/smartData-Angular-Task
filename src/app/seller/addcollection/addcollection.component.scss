@@ -1,0 +1,15 @@
+.collection-cards{
+    margin: 3rem;
+}
+
+.btni {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+.btni:hover {
+    background-color: #3e8e41;
+    color: white;
+}

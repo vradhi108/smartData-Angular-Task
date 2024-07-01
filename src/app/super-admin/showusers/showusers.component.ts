@@ -55,27 +55,41 @@ export class ShowusersComponent {
   obj: any;
 
   deactivateUser(id: any){
-    this.isActive = !this.isActive;
+    
     this.getusers.forEach((element: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; sellerpassword: any; status: any}) => {
       if (element.userid === id){
         element.status = 0;
+        
       }
       
     });
-    console.log(this.getusers);
     localStorage.setItem('sellers', JSON.stringify(this.getusers));
+    console.log(this.getusers);
   }
 
   activateUser(id: any){
-    this.isActive = !this.isActive;
+    
     this.getusers.forEach((element: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; sellerpassword: any; status: any}) => {
       if (element.userid === id){
         element.status = 1;
+        
       }
       
     });
-    console.log(this.getusers);
     localStorage.setItem('sellers', JSON.stringify(this.getusers));
+    console.log(this.getusers);
   }
   
+
+  visibility = false;
+  passwordType = 'password';
+  toggleVisibility(userid: any){
+    this.getusers.forEach((element: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; sellerpassword: any; status: any}) => {
+      if (element.userid === userid){
+        if (this.passwordType === 'password') this.passwordType = 'text';
+        else this.passwordType = 'password';
+      }
+    });
+
+  }
 }
