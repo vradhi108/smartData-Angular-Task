@@ -20,6 +20,10 @@ export class NavbarHeaderComponent{
         this.router.navigate(['/adminlogin']);
     }
 
+    navigateSellerlogin(){
+        this.router.navigate(['/sellerlogin']);
+    }
+
     logout(){
         this.ser.logoutAdmin();
     }

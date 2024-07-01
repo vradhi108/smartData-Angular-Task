@@ -12,6 +12,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { SuperAdminRoutingModule } from './super-admin/super-admin-routing.module';
 import { SuperAdminModule } from './super-admin/super-admin.module';
 import {NavbarHeaderComponent} from './Headers/navbar-header/navbar.header';
+import { SellerLoginComponent } from './seller/seller-login/seller-login.component';
+import { SellerRoutingModule } from './seller/seller-routing.module';
+import { SellerModule } from './seller/seller.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,14 +23,17 @@ import {NavbarHeaderComponent} from './Headers/navbar-header/navbar.header';
     RegistrationComponent,
     BlockCopyPasteDirective,
     ForgotPasswordComponent,
-    NavbarHeaderComponent
+    NavbarHeaderComponent,
+    SellerLoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     SuperAdminRoutingModule,
-    SuperAdminModule
+    SuperAdminModule,
+    SellerRoutingModule,
+    SellerModule
     
   ],
   providers: [],

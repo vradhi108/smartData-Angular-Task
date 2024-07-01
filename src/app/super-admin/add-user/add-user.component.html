@@ -13,8 +13,8 @@
           <h1>Admin controls</h1>
         </div>
         <div class="navbar-right">
-          <button class="btn btni" (click)="navigateAdduser()">Add Users</button>
-          <button class="btn btni" (click)="navigateshowUsers()">Show Users</button>
+          <button class="btn btni" (click)="navigateAdduser()">Add Seller</button>
+          <button class="btn btni" (click)="navigateshowUsers()">Show Sellers</button>
           <button class="btn btni" (click)="logout()">Logout</button>
         </div>
     </nav>
@@ -44,12 +44,17 @@
                 <label for="phonenumber" class="form-label">Phone Number</label>
                 <input type="text" formControlName="phonenumber" class="form-control">
             </div>
+
+            <div class="col-md-6">
+                <label for="sellerpassword" class="form-label">Set password</label>
+                <input type="text" formControlName="sellerpassword" class="form-control">
+            </div>
             <div class="button-center" *ngIf="value == undefined">
-                <button [disabled]="adduser.invalid" (click)="addUser()" class="btn btn-primary btni">Add user</button>
+                <button [disabled]="adduser.invalid" (click)="addUser()" class="btn btn-primary btni">Add seller</button>
             </div>
 
             <div class="button-center" *ngIf="value == 1">
-                <button [disabled]="adduser.invalid" (click)="confirmEdit()" class="btn btn-primary btni">Edit user</button>
+                <button [disabled]="adduser.invalid" (click)="confirmEdit()" class="btn btn-primary btni">Edit seller</button>
             </div>
         </form>
    </div>

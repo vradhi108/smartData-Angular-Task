@@ -12,8 +12,8 @@
           <h1>Admin controls</h1>
         </div>
         <div class="navbar-right">
-          <button class="btn btni" (click)="navigateAdduser()">Add Users</button>
-          <button class="btn btni" (click)="navigateshowUsers()">Show Users</button>
+          <button class="btn btni" (click)="navigateAdduser()">Add Seller</button>
+          <button class="btn btni" (click)="navigateshowUsers()">Show Sellers</button>
           <button class="btn btni" (click)="logout()">Logout</button>
         </div>
     </nav>
@@ -21,13 +21,15 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th class="text-success-dark">User Id</th>
+                    <th class="text-success-dark">Seller Id</th>
                     <th class="text-success-dark">First name</th>
                     <th class="text-success-dark">Last name</th>
                     <th class="text-success-dark">Email Id</th>
                     <th class="text-success-dark">Phone number</th>
+                    <th class="text-success-dark">Seller password</th>
                     <th class="text-success-dark">Edit</th>
                     <th class="text-success-dark">Remove</th>
+                    <th class="text-success-dark">Status</th>
                 </tr>
             </thead>
         
@@ -38,8 +40,13 @@
                     <td class="text-success">{{item.lastname}}</td>
                     <td class="text-success">{{item.emailid}}</td>
                     <td class="text-success">{{item.phonenumber}}</td>
+                    <td class="text-success">{{item.sellerpassword}}</td>
                     <td class="text-success"><button class="btn btn-success" (click)="updateData(item.userid)">Edit</button></td>
                     <td class="text-success"><button class="btn btn-danger" (click)="deleteData(item.userid)">Remove</button></td>
+                    <td class="text-success">
+                        <button *ngIf="isActive" class="btn btn-warning" (click)="deactivateUser(item.userid)">Active</button>
+                        <button *ngIf="!isActive" class="btn btn-secondary" (click)="activateUser(item.userid)">Inactive</button>
+                    </td>
                 </tr>
             </tbody>
             
