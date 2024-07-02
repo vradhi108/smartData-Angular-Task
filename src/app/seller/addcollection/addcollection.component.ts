@@ -12,6 +12,7 @@ interface Card {
 })
 export class AddcollectionComponent {
   ngOnInit(){
+    if (localStorage.getItem('collections') == null) localStorage.setItem('collections', JSON.stringify(this.cards));
     let getcollections = localStorage.getItem('collections');
     this.cards = getcollections? JSON.parse(getcollections): null;
   }
@@ -20,7 +21,7 @@ source: any;
 description: any;
   cards: Card[] = [];
 
-  createCard() {
+  createCollection() {
     this.title = prompt('Enter the name of your collection');
     this.source = prompt('Enter the source of the image');
     this.description = prompt('Enter description of your collection');
@@ -29,6 +30,9 @@ description: any;
       source: this.source,
       description: this.description
     });
+
+    
+
     
     localStorage.setItem('collections', JSON.stringify(this.cards));
     let getcollections = localStorage.getItem('collections');
@@ -36,6 +40,11 @@ description: any;
     
    
    console.log(this.title)
+  }
+
+dynamicpath = 'images/clothes.jpg';
+  addItem(){
+
   }
 
 }

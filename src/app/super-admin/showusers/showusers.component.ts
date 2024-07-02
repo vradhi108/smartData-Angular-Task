@@ -82,12 +82,11 @@ export class ShowusersComponent {
   
 
   visibility = false;
-  passwordType = 'password';
+  userPasswordVisible: { [key: string]: boolean } = {};
   toggleVisibility(userid: any){
     this.getusers.forEach((element: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; sellerpassword: any; status: any}) => {
       if (element.userid === userid){
-        if (this.passwordType === 'password') this.passwordType = 'text';
-        else this.passwordType = 'password';
+        this.userPasswordVisible[userid] = !this.userPasswordVisible[userid];
       }
     });
 

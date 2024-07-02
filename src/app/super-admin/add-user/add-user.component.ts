@@ -27,7 +27,6 @@ export class AddUserComponent {
   });
   console.log(this.id);
   console.log(this.value);
-
   this.edituser();
 }
 
