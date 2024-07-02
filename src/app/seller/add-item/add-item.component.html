@@ -11,14 +11,16 @@
         <div class="d-flex flex-wrap">
             
             
-            <div *ngFor="let card of cards">
+            <div *ngFor="let item of items">
                 <div class="col col-6 card collection-cards" style="width: 18rem; ">
-                  <img [src]="'../../../assets/'+card.source" class="card-img-top" style="height: 18rem; width: 18rem;">
+                  <img [src]="'../../../assets/'+item.source" class="card-img-top" style="height: 18rem; width: 18rem;">
 
                     <div class="card-body">
-                      <h5 class="card-title">{{card.title}}</h5>
-                      <p class="card-text">{{ card.description }}</p>
-                      <button (click)="addItem(card.title)" class="btn btni btn-primary">Add Item <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                      <h5 class="card-title">{{item.productid}}</h5>
+                      <p class="card-text">{{ item.name }}</p>
+                      <p class="card-text">{{ item.type }}</p>
+                      <p class="card-text">{{ item.description }}</p>
+                      <button (click)="edit()" class="btn btni btn-primary">Edit<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
                       </svg> </button>
                     </div>
@@ -28,9 +30,9 @@
             <div class="col col-6 card collection-cards" style="width: 18rem;">
               <img src="../../../assets/clothes.jpeg" class="card-img-top" width="100px" height="100px" style="height: 18rem; width: 18rem">
               <div class="card-body">
-                <h5 class="card-title">Add your collection</h5>
-                <p class="card-text">Click here to add your collection</p>
-                <button (click)="createCollection()" class="btn btni btn-primary">Add collection <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                <h5 class="card-title">Add your Items</h5>
+                <p class="card-text">Click here to add your item</p>
+                <button (click)="addItem()" class="btn btni btn-primary">Add item <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
                 </svg> </button>
               </div>

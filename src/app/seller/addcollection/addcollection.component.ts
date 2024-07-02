@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 interface Card {
   title: string;
   source: string;
@@ -11,6 +12,7 @@ interface Card {
   styleUrls: ['./addcollection.component.scss']
 })
 export class AddcollectionComponent {
+  constructor(private route: Router){}
   ngOnInit(){
     if (localStorage.getItem('collections') == null) localStorage.setItem('collections', JSON.stringify(this.cards));
     let getcollections = localStorage.getItem('collections');
@@ -42,9 +44,8 @@ description: any;
    console.log(this.title)
   }
 
-dynamicpath = 'images/clothes.jpg';
-  addItem(){
-
+  addItem(title: any){
+    this.route.navigate(['/additem'], {queryParams: {title: title}});
   }
 
 }
