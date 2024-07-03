@@ -13,7 +13,7 @@
             
             <div *ngFor="let item of items">
                 <div class="col col-6 card collection-cards" style="width: 18rem; ">
-                  <img [src]="'../../../assets/'+item.source" class="card-img-top" style="height: 18rem; width: 18rem;">
+                  <img [src]="'../../../assets/'+item.name+'/'+item.source" class="card-img-top" style="height: 18rem; width: 18rem;">
 
                     <div class="card-body">
                       <h5 class="card-title">{{item.productid}}</h5>
