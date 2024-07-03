@@ -5,6 +5,7 @@ import { SellerprofileComponent } from './sellerprofile/sellerprofile.component'
 import { HeaderComponent } from './seller-nav-header/header/header.component';
 import { AddcollectionComponent } from './addcollection/addcollection.component';
 import { AddItemComponent } from './add-item/add-item.component';
+import { AdditemdetailsComponent } from './additemdetails/additemdetails.component';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { AddItemComponent } from './add-item/add-item.component';
     SellerprofileComponent,
     HeaderComponent,
     AddcollectionComponent,
-    AddItemComponent
+    AddItemComponent,
+    AdditemdetailsComponent
   ],
   imports: [
     CommonModule,

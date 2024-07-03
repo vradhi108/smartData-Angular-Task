@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 interface Item {
   productid: string;
@@ -15,7 +15,7 @@ interface Item {
   styleUrls: ['./add-item.component.scss']
 })
 export class AddItemComponent {
-  constructor(private router: ActivatedRoute){}
+  constructor(private router: ActivatedRoute, private route: Router){}
   title: any;
   ngOnInit(){
     this.router.queryParams.subscribe(params => {
@@ -26,6 +26,8 @@ export class AddItemComponent {
     if (localStorage.getItem(this.title+'_collections') == null) localStorage.setItem(this.title+'_collections', JSON.stringify(this.items));
     let getcollections = localStorage.getItem(this.title+'_collections');
     this.items = getcollections? JSON.parse(getcollections): null;
+
+    this.productid = this.generateRandomId();
   }
 
   productid: any;
@@ -43,26 +45,16 @@ export class AddItemComponent {
   }
 
   addItem() {
-    this.productid = this.generateRandomId();
-    this.name = prompt('Enter the name of your product');
-    this.source = prompt('Enter the source of the image');
-    this.type = prompt('Enter the type of your product or the category')
-    this.description = prompt('Enter description of your collection');
-    this.items.push({
-      productid: this.productid,
-      name: this.name,
-      type: this.type,
-      source: this.source,
-      description: this.description
-    });
-    localStorage.setItem(this.title+'_collection', JSON.stringify(this.items));
-    let getitems = localStorage.getItem(this.title+'_collection');
-    this.items = getitems? JSON.parse(getitems): null;
+    
+    this.route.navigate(['/additemdetails'], { queryParams: {Id: this.productid} });
+
+    // not needed here.
+    
     
    
    console.log(this.title)
   }
   edit(){
-
+    this.route.navigate(['/additemdetails'], { queryParams: {Id: this.productid, edit: 1} });
   }
 }
