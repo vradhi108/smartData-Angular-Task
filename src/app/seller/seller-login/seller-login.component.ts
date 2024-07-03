@@ -48,6 +48,7 @@ export class SellerLoginComponent {
 
       }
     });
+    localStorage.setItem('sellerid', JSON.stringify(this.form.value.username));
 
     if (!this.rightCredentials) alert('Wrong credentials')
   }

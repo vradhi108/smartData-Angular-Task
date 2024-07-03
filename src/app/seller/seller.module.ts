@@ -6,8 +6,7 @@ import { HeaderComponent } from './seller-nav-header/header/header.component';
 import { AddcollectionComponent } from './addcollection/addcollection.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { AdditemdetailsComponent } from './additemdetails/additemdetails.component';
-
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     SellerprofileComponent,
@@ -18,7 +17,8 @@ import { AdditemdetailsComponent } from './additemdetails/additemdetails.compone
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class SellerModule { }

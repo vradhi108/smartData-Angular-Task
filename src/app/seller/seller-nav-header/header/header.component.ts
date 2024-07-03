@@ -8,19 +8,30 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(private route: Router){};
-  
+  constructor(private route: Router){
+    this.getid = localStorage.getItem('sellerid');
+    this.id = this.getid?JSON.parse(this.getid): '';
+
+  }
+  id: any;
+  getid:any;
+
   addCollection(){
-    this.route.navigate(['/addcollection']);
+    this.route.navigate(['/addcollection'], {queryParams: {id: this.id}});
   }
 
   viewProfile(){
-    this.route.navigate(['/sellerprofile'])
+    this.route.navigate(['/sellerprofile'], {queryParams: {id: this.id}})
+  }
+
+  viewProducts(){
+
   }
 
   contactUs(){
 
   }
+
 
   logout(){
     this.route.navigate(['/sellerlogin']);

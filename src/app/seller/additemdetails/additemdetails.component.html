@@ -34,6 +34,16 @@
                         </div> 
                     </div>
                     <br>
+
+                    <div class="mb-3">
+                        <label for="product_price" class="form-label">Product price</label> 
+                        <input type="number" name="product_price" class="form-control" formControlName="product_price">
+                        <div *ngIf="form.get('product_price')?.invalid && form.get('product_price')?.touched" class="error">
+                            This field is required or the input is invalid
+                        </div> 
+                    </div>
+                    <br>
+
                     <div class="mb-3">
                         <label for="product_details" class="form-label">Product Details</label> 
                         <input type="text" name="product_details" class="form-control" formControlName="product_details">
@@ -45,9 +55,8 @@
 
                     <div class="mb-3">
                         <label for="product_details" class="form-label">Upload Image</label> 
-                        <input class="form-control" type="file" name="product_details" formControlName="product_image" (change)="onFileSelected($event)" />
-                        <br>
-                        <button class="btni btn btn-success" type="submit">Upload</button>
+                        <input class="form-control" type="text" name="product_details" formControlName="product_image" />
+                        
                         <div *ngIf="form.get('product_details')?.invalid && form.get('product_details')?.touched" class="error">
                             This field is required or the input is invalid
                         </div>

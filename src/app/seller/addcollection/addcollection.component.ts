@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 interface Card {
   title: string;
   source: string;
@@ -12,8 +12,14 @@ interface Card {
   styleUrls: ['./addcollection.component.scss']
 })
 export class AddcollectionComponent {
-  constructor(private route: Router){}
+  constructor(private route: Router, private router: ActivatedRoute){}
+  id: any;
   ngOnInit(){
+    this.router.queryParams.subscribe(params => {
+      this.id = params['id'];
+      console.log('ID from query params:', this.id);
+    });
+
     if (localStorage.getItem('collections') == null) localStorage.setItem('collections', JSON.stringify(this.cards));
     let getcollections = localStorage.getItem('collections');
     this.cards = getcollections? JSON.parse(getcollections): null;
@@ -45,7 +51,7 @@ description: any;
   }
 
   addItem(title: any){
-    this.route.navigate(['/additem'], {queryParams: {title: title}});
+    this.route.navigate(['/additem'], {queryParams: {category: title, id: this.id}});
   }
 
 }

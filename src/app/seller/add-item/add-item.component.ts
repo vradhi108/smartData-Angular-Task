@@ -7,6 +7,7 @@ interface Item {
   type: string;
   source: string;
   description: string;
+  price: string;
 }
 
 @Component({
@@ -15,19 +16,26 @@ interface Item {
   styleUrls: ['./add-item.component.scss']
 })
 export class AddItemComponent {
+product_id: any;
   constructor(private router: ActivatedRoute, private route: Router){}
   title: any;
+  category: any;
+  id: any;
   ngOnInit(){
     this.router.queryParams.subscribe(params => {
-      this.title = params['title'];
+      // this.title = params['title'];
+      this.category = params['category'];
+      this.id = params['id'];
+      console.log(this.category);
     });
 
 
-    if (localStorage.getItem(this.title+'_collections') == null) localStorage.setItem(this.title+'_collections', JSON.stringify(this.items));
-    let getcollections = localStorage.getItem(this.title+'_collections');
+    if (localStorage.getItem(this.category+'_collection') == null) localStorage.setItem(this.category+'_collection', JSON.stringify(this.items));
+    let getcollections = localStorage.getItem(this.category+'_collection');
     this.items = getcollections? JSON.parse(getcollections): null;
 
     this.productid = this.generateRandomId();
+    console.log(this.items);
   }
 
   productid: any;
@@ -46,7 +54,7 @@ export class AddItemComponent {
 
   addItem() {
     
-    this.route.navigate(['/additemdetails'], { queryParams: {Id: this.productid} });
+    this.route.navigate(['/additemdetails'], { queryParams: {Id: this.productid, sellerid: this.id} });
 
     // not needed here.
     
@@ -54,7 +62,7 @@ export class AddItemComponent {
    
    console.log(this.title)
   }
-  edit(){
-    this.route.navigate(['/additemdetails'], { queryParams: {Id: this.productid, edit: 1} });
+  edit(product_id: any){
+    this.route.navigate(['/additemdetails'], { queryParams: {Id: product_id, edit: 1, collection_name: this.category, sellerid: this.id} });
   }
 }
