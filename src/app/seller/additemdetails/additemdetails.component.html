@@ -44,31 +44,38 @@
                     <br>
 
                     <div class="mb-3">
-                        <label for="product_details" class="form-label">Product Details</label> 
-                        <input type="text"  class="form-control" >
-                        <input type="file" name="product_details" formControlName="product_image" (change)="onFileSelected($event)" />
-                        <button type="submit">Upload</button>
+                        <label for="product_details" class="form-label">Upload Image</label> 
+                        <input class="form-control" type="file" name="product_details" formControlName="product_image" (change)="onFileSelected($event)" />
+                        <br>
+                        <button class="btni btn btn-success" type="submit">Upload</button>
                         <div *ngIf="form.get('product_details')?.invalid && form.get('product_details')?.touched" class="error">
                             This field is required or the input is invalid
                         </div>
                     </div>
                     <br>
 
-                    <div *ngIf="addfield" class="mb-3">
-                        <div *ngFor="let field of inputField">
-                            <label  class="form-label">Field name</label> 
-                            <input type="text" class="form-control">
-                            <label  class="form-label">Field value</label> 
-                            <input type="text"  class="form-control" >
+                    <div *ngIf="addfield" formArrayName="customFields">
+                        <h3>Custom Fields</h3>
+                        <div *ngFor="let customField of customFields.controls; let i=index" [formGroupName]="i">
+                          <div>
+                            <label class="form-label"  for="label">Label:</label>
+                            <input class="form-control" type="text" id="label" formControlName="label">
+                          </div>
+                          <div>
+                            <label class="form-label" for="value">Value:</label>
+                            <input class="form-control" type="text" id="value" formControlName="value">
+                          </div>
                         </div>
-                    </div>
+                        <br>
+                        <button class="btni btn btn-success" type="button"   (click)="addCustomField()">Add Field</button>
+                      </div>
                     <br>
 
                     <div *ngIf="toEdit == undefined">
-                        <span class="button-center">
+                        <span *ngIf="!addfield" class="button-center ">
                             <button  class="btni btn btn-success" type="submit" (click)="addField()">Add field</button>
                         </span>
-                        <span class="button-center">
+                        <span class="button-center m-3">
                             <button  class="btni btn btn-success" type="submit" (click)="addItem()">Add item</button>
                         </span>
                     </div>
