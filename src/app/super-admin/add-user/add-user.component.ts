@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
-
+import { ConnectAPIService } from 'src/app/services/connect-api.service';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -10,7 +10,9 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 })
 export class AddUserComponent {
 
-  constructor (private router: Router, private ser: AuthServiceService, private route: ActivatedRoute) {}
+  constructor (private router: Router, private ser: AuthServiceService, private route: ActivatedRoute,
+    private api: ConnectAPIService
+  ) {}
 
   id: any;
   value: number = 0;
@@ -41,6 +43,7 @@ export class AddUserComponent {
 
   newuser: any;
   alreadyPresent: boolean = false;
+  sellers: any;
   addUser(){
     let obj = {
       userid: this.adduser.value.userid,
@@ -51,23 +54,37 @@ export class AddUserComponent {
       sellerpassword: this.adduser.value.sellerpassword,
       status: 0
     }
-    let user:any = [];
-    if (localStorage.getItem('sellers') == null) localStorage.setItem('sellers', JSON.stringify(user));
-    
-    const getlist = localStorage.getItem('sellers');
-    this.newuser = getlist !== null ? JSON.parse(getlist) : null;
-    this.alreadyPresent = this.newuser.some((i: { userid: string | null | undefined; }) => i.userid === obj.userid) || 
-    this.newuser.some((i: { emailid: string | null | undefined; }) => i.emailid === obj.emailid) ||
-    this.newuser.some((i: { phonenumber: string | null | undefined; }) => i.phonenumber === obj.phonenumber);
 
-    if (!this.alreadyPresent){
-      this.newuser.push(obj);
-      localStorage.setItem('sellers', JSON.stringify(this.newuser));
-      alert('Seller added.')
-    }
-    else{
-      alert('The user is already present.')
-    }
+    this.api.addseller(obj).subscribe({
+      next: (res) =>{
+        alert('User added')
+      },
+      error: (error) =>{
+        alert('Usr Already exists');
+      }
+
+    });
+
+    
+    
+    
+    // let user:any = [];
+    // if (localStorage.getItem('sellers') == null) localStorage.setItem('sellers', JSON.stringify(user));
+    
+    // const getlist = localStorage.getItem('sellers');
+    // this.newuser = getlist !== null ? JSON.parse(getlist) : null;
+    // this.alreadyPresent = this.newuser.some((i: { userid: string | null | undefined; }) => i.userid === obj.userid) || 
+    // this.newuser.some((i: { emailid: string | null | undefined; }) => i.emailid === obj.emailid) ||
+    // this.newuser.some((i: { phonenumber: string | null | undefined; }) => i.phonenumber === obj.phonenumber);
+
+    // if (!this.alreadyPresent){
+    //   this.newuser.push(obj);
+    //   localStorage.setItem('sellers', JSON.stringify(this.newuser));
+    //   alert('Seller added.')
+    // }
+    // else{
+    //   alert('The user is already present.')
+    // }
   }
 
   navigateAdduser(){

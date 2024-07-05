@@ -20,8 +20,8 @@
         <form [formGroup]="form" (ngSubmit)="onClick()" class="form" appBlockCopyPaste>
             <div class="container boundary">
                 <div class="mb-3">
-                    <label for="username" class="form-label">User Id</label>
-                    <input type="text" name="username" class="form-control" formControlName="username"
+                    <label for="username" class="form-label">User Email</label>
+                    <input type="email" name="username" class="form-control" formControlName="username"
                         BlockCopyPasteDirective>
                     <div *ngIf="form.get('username')?.invalid && form.get('username')?.touched" class="error">
                         This field is required

@@ -45,6 +45,15 @@
                     <br>
 
                     <div class="mb-3">
+                        <label for="product_quantity" class="form-label">Product quantity</label> 
+                        <input type="number" name="product_quantity" class="form-control" formControlName="product_quantity">
+                        <div *ngIf="form.get('product_quantity')?.invalid && form.get('product_quantity')?.touched" class="error">
+                            This field is required or the input is invalid
+                        </div> 
+                    </div>
+                    <br>
+
+                    <div class="mb-3">
                         <label for="product_details" class="form-label">Product Details</label> 
                         <input type="text" name="product_details" class="form-control" formControlName="product_details">
                         <div *ngIf="form.get('product_details')?.invalid && form.get('product_details')?.touched" class="error">

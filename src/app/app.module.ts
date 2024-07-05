@@ -15,6 +15,7 @@ import {NavbarHeaderComponent} from './Headers/navbar-header/navbar.header';
 import { SellerLoginComponent } from './seller/seller-login/seller-login.component';
 import { SellerRoutingModule } from './seller/seller-routing.module';
 import { SellerModule } from './seller/seller.module';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { SellerModule } from './seller/seller.module';
     SuperAdminRoutingModule,
     SuperAdminModule,
     SellerRoutingModule,
-    SellerModule
+    SellerModule,
+    HttpClientModule
     
   ],
   providers: [],

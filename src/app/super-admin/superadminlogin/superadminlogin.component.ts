@@ -25,9 +25,9 @@ export class SuperadminloginComponent {
   clickedForgotPassword(){
     this.forgotPassword = true;
   }
-  onClick(){
-    this.authservice.login(this.form.value.username, this.form.value.password);
-  }
+  // onClick(){
+  //   this.authservice.login(this.form.value.username, this.form.value.password);
+  // }
 
   toggleVisibility(){
     this.visibility = !this.visibility;

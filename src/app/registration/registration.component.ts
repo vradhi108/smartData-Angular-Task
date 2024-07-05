@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RandomUseridGenerationService } from '../services/random-userid-generation.service';
-
+import { ConnectAPIService } from '../services/connect-api.service';
 
 interface Country{
   name: string;
@@ -16,7 +16,7 @@ interface Country{
 })
 export class RegistrationComponent {
 
-  constructor(private router: Router, private RandomUserId: RandomUseridGenerationService){};
+  constructor(private router: Router, private RandomUserId: RandomUseridGenerationService, private service:ConnectAPIService){};
 
   invalid = false;
   showPasswordRules: any;
@@ -85,10 +85,10 @@ export class RegistrationComponent {
 
   onClick(){
     if(this.form.valid && this.form.value.password === this.form.value.confirmPassword){
-      this.generateUserId();
-      console.log(this.form.value);
-      console.log(this.userId);
-      alert('Your User Id is: '+ this.userId + '. Please note it down for further process.')
+      this.service.adduser(this.form.value).subscribe(res=>{
+        console.log(res);
+      })
+      //................toaster................
       this.router.navigate(['login']);
     }
     else if (this.form.value.password != this.form.value.confirmPassword){

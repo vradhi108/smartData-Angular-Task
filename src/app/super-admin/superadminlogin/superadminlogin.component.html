@@ -17,7 +17,7 @@
     <navbar-header></navbar-header>
     
     <div class="container myform">
-        <form [formGroup]="form" (ngSubmit)="onClick()" class="form" appBlockCopyPaste>
+        <form [formGroup]="form" (ngSubmit)="adminVerified()" class="form" appBlockCopyPaste>
             <div class="container boundary">
                 <div class="mb-3">
                     <label for="username" class="form-label">Admin username</label>
@@ -66,7 +66,7 @@
 
                
                 <div class="button-center">
-                    <button class="btni btn btn-success" type="submit" (click)="adminVerified()">Log In</button>
+                    <button class="btni btn btn-success" type="submit">Log In</button>
                 </div>
             </div>
         </form>

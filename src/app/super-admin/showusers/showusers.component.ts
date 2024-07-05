@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { interval, startWith } from 'rxjs';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
-
+import { ConnectAPIService } from 'src/app/services/connect-api.service';
 @Component({
   selector: 'app-showusers',
   templateUrl: './showusers.component.html',
@@ -10,15 +10,22 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 })
 export class ShowusersComponent {
 
-  constructor (private router: Router, private ser: AuthServiceService){}
+  constructor (private router: Router, private ser: AuthServiceService, private api: ConnectAPIService){}
   isActive: boolean = false;
   getusers:any;
-  data = new Array<Object> ();
+  data :any;
+  sellers = new Object;
   ngOnInit(){
+    this.api.getsellers().subscribe((res) =>{
+      this.data=res;
+      console.log('in',this.data);
+    })
+    console.log('out',this.data);
+    
 
-    const list = localStorage.getItem('sellers');
-    this.getusers = list !== null ? JSON.parse(list) : null;
-    this.startAutoRefresh();
+    // const list = localStorage.getItem('sellers');
+    // this.getusers = list !== null ? JSON.parse(list) : null;
+    // this.startAutoRefresh();
   }
 
   updateData(id: any){

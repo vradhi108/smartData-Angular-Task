@@ -6,8 +6,10 @@ interface Item {
   name: string;
   type: string;
   source: string;
+  quantity: string;
   description: string;
   price: string;
+  custom: [];
 }
 
 @Component({
@@ -30,15 +32,24 @@ product_id: any;
     });
 
 
-    if (localStorage.getItem(this.category+'_collection') == null) localStorage.setItem(this.category+'_collection', JSON.stringify(this.items));
-    let getcollections = localStorage.getItem(this.category+'_collection');
-    this.items = getcollections? JSON.parse(getcollections): null;
+    if (localStorage.getItem('collections') == null) localStorage.setItem('collections', JSON.stringify(this.seller));
+    let getcollections = localStorage.getItem('collections');
+    this.seller = getcollections? JSON.parse(getcollections): null;
+    this.seller.forEach((element: {title: any; source: any; description: any; item:{productid: any; name: any;
+      type: any; source: any; quantity: any;description: any;price: any;custom: any;
+    }}) => {
 
+      if(element.title === this.category){
+        this.items.push(element.item);
+      }
+
+    });
     this.productid = this.generateRandomId();
-    console.log(this.items);
+    console.log('my inserted items recently',this.items);
   }
 
   productid: any;
+  seller: any[]=[]
   name: any;
   type: any;
   source: any;

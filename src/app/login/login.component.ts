@@ -14,7 +14,7 @@ export class LoginComponent {
   
 
   form = new FormGroup({
-    username: new FormControl('',[Validators.required, Validators.minLength(6), Validators.maxLength(10)]),
+    username: new FormControl('',[Validators.required, Validators.email]),
     password: new FormControl('',[Validators.required, Validators.minLength(6) ,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')]),
   });
 
@@ -25,6 +25,7 @@ export class LoginComponent {
   }
   onClick(){
     this.authservice.login(this.form.value.username, this.form.value.password);
+
   }
 
   toggleVisibility(){
