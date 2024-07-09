@@ -27,8 +27,8 @@ export class AddUserComponent {
     
       // Now you can use the id as needed in your component
   });
-  console.log(this.id);
-  console.log(this.value);
+  // console.log(this.id);
+  // console.log(this.value);
   this.edituser();
 }
 
@@ -100,27 +100,27 @@ export class AddUserComponent {
   }
    obj: any;
   edituser(){
-    const getlist = localStorage.getItem('sellers');
-    this.newuser = getlist !== null ? JSON.parse(getlist) : null;
+    // const getlist = localStorage.getItem('sellers');
+    // this.newuser = getlist !== null ? JSON.parse(getlist) : null;
     // var present = this.newuser.some((i: { userid: string | null | undefined; }) => i.userid === this.id);
     
       
-      this.newuser.forEach((element: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; sellerpassword: any; status: any}) => {
-        if (element.userid === this.id){
-          this.obj = {
-            userid: element.userid,
-            firstname: element.firstname,
-            lastname: element.lastname,
-            emailid: element.emailid,
-            phonenumber: element.phonenumber,
-            sellerpassword: element.sellerpassword
-          }
-        }
+      // this.newuser.forEach((element: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; sellerpassword: any; status: any}) => {
+      //   if (element.userid === this.id){
+      //     this.obj = {
+      //       userid: element.userid,
+      //       firstname: element.firstname,
+      //       lastname: element.lastname,
+      //       emailid: element.emailid,
+      //       phonenumber: element.phonenumber,
+      //       sellerpassword: element.sellerpassword
+      //     }
+      //   }
         
-      });
-      console.log(this.obj);
+      // });
+      // console.log(this.obj);
 
-      this.adduser.patchValue(this.obj);
+      // this.adduser.patchValue(this.obj);
       
   }
 

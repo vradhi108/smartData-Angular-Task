@@ -46,7 +46,7 @@ export class AuthServiceService {
       }
       else{
         alert('Wrong Credentials');
-        this.router.navigate(['./adminlogin']);
+        this.router.navigate(['/adminlogin']);
       }
     });
    

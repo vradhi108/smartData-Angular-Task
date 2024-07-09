@@ -18,6 +18,7 @@ export class ShowusersComponent {
   ngOnInit(){
     this.api.getsellers().subscribe((res) =>{
       this.data=res;
+      
       console.log('in',this.data);
     })
     console.log('out',this.data);
@@ -73,18 +74,31 @@ export class ShowusersComponent {
     localStorage.setItem('sellers', JSON.stringify(this.getusers));
     console.log(this.getusers);
   }
-
-  activateUser(id: any){
-    
-    this.getusers.forEach((element: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; sellerpassword: any; status: any}) => {
-      if (element.userid === id){
-        element.status = 1;
-        
-      }
-      
+  arrayforresa: any;
+  activateUser(userid: any){
+    console.log('inside the function', userid);
+    this.api.changesellerstatus(userid).subscribe(res=>{
+      console.log(res);
     });
-    localStorage.setItem('sellers', JSON.stringify(this.getusers));
-    console.log(this.getusers);
+
+    // this.api.getsellers().subscribe(res =>{
+    //   this.arrayforresa = res;
+    //   this.arrayforresa.forEach((element: any) => {
+    //     if (element.sellerid === id){
+    //       if(element.status == 0) 
+    //     }
+    //   });
+    // })
+    
+    // this.getusers.forEach((element: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; sellerpassword: any; status: any}) => {
+    //   if (element.userid === id){
+    //     element.status = 1;
+        
+    //   }
+      
+    // });
+    // localStorage.setItem('sellers', JSON.stringify(this.getusers));
+    // console.log(this.getusers);
   }
   
 
@@ -96,6 +110,5 @@ export class ShowusersComponent {
         this.userPasswordVisible[userid] = !this.userPasswordVisible[userid];
       }
     });
-
   }
 }

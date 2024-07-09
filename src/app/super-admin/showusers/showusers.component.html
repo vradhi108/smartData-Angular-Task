@@ -60,7 +60,7 @@
                     <td class="text-success"><button class="btn btn-success" (click)="updateData(item.userid)">Edit</button></td>
                     <td class="text-success"><button class="btn btn-danger" (click)="deleteData(item.userid)">Remove</button></td>
                     <td class="text-success">
-                        <button *ngIf="item.status == 1" class="btn btn-warning" (click)="deactivateUser(item.userid)">Active</button>
+                        <button *ngIf="item.status == 1" class="btn btn-warning" (click)="activateUser(item.userid)">Active</button>
                         <button *ngIf="item.status == 0" class="btn btn-secondary" (click)="activateUser(item.userid)">Inactive</button>
                     </td>
                 </tr>
