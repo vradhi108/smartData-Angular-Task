@@ -66,4 +66,31 @@ export class AuthServiceService {
     localStorage.removeItem('AdminToken');
     this.router.navigate(['/adminlogin']);
   }
+data: any;
+
+sellerAuthentication = false;
+  sellerLogin(username: any, password: any){
+    this.api.getseller(username).subscribe(res=>{
+      this.data = res;
+      console.log('this is my dtaaa',this.data[0])
+      if(this.data[0].status){
+        if (username == this.data[0].userid && password == this.data[0].sellerpassword){
+          this.sellerAuthentication = true;
+          var tokenseller = "sellertoken";
+          localStorage.setItem('sellertoken', tokenseller);
+          this.router.navigate(['/sellerprofile'], { queryParams: { id: username } });
+        }
+        else{
+          alert('Invalid credentials')
+        }
+      }
+      else{
+        alert('user is inactive')
+      }
+    });
+  }
+  
+  isAuthenticatedSeller(){
+    return this.sellerAuthentication;
+  }
 }

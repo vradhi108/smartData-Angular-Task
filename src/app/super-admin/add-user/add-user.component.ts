@@ -103,7 +103,11 @@ export class AddUserComponent {
     // const getlist = localStorage.getItem('sellers');
     // this.newuser = getlist !== null ? JSON.parse(getlist) : null;
     // var present = this.newuser.some((i: { userid: string | null | undefined; }) => i.userid === this.id);
-    
+    // this.api.getseller(this.id).subscribe(res => {
+    //   console.log(res);
+    //   this.obj = res;
+    //   this.adduser.patchValue(this.obj[0]);
+    // })
       
       // this.newuser.forEach((element: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; sellerpassword: any; status: any}) => {
       //   if (element.userid === this.id){

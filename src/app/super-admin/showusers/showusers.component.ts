@@ -24,6 +24,7 @@ export class ShowusersComponent {
     console.log('out',this.data);
     
 
+
     // const list = localStorage.getItem('sellers');
     // this.getusers = list !== null ? JSON.parse(list) : null;
     // this.startAutoRefresh();
@@ -35,14 +36,12 @@ export class ShowusersComponent {
   }
 
   deleteData(id: any){
-    this.getusers.forEach((element: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; sellerpassword: any;}) => {
-      if (element.userid === id){
-        this.getusers = this.getusers.filter((user: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; sellerpassword: any}) => user.userid != id);
-      }
+    this.api.deleteseller(id).subscribe(res =>{
+      console.log(res);
+      this.api.getseller(id).subscribe(res =>{
+        this.data = res;
+      })
     });
-    console.log(this.getusers);
-    localStorage.setItem('sellers', JSON.stringify(this.getusers));
-    
   }
 
   startAutoRefresh() {
@@ -62,23 +61,14 @@ export class ShowusersComponent {
   }
   obj: any;
 
-  deactivateUser(id: any){
-    
-    this.getusers.forEach((element: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; sellerpassword: any; status: any}) => {
-      if (element.userid === id){
-        element.status = 0;
-        
-      }
-      
-    });
-    localStorage.setItem('sellers', JSON.stringify(this.getusers));
-    console.log(this.getusers);
-  }
   arrayforresa: any;
   activateUser(userid: any){
     console.log('inside the function', userid);
     this.api.changesellerstatus(userid).subscribe(res=>{
-      console.log(res);
+      this.api.getseller(userid).subscribe(res =>{
+        this.data = res;
+      })
+      console.log('this is the response',res);
     });
 
     // this.api.getsellers().subscribe(res =>{
