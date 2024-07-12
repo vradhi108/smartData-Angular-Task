@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConnectAPIService } from 'src/app/services/connect-api.service';
 interface Item {
   productid: string;
   name: string;
@@ -16,7 +17,7 @@ interface Card {
   title: string;
   source: string;
   description: string;
-  item: Item[];
+  sellerid: number;
 }
 @Component({
   selector: 'app-addcollection',
@@ -24,7 +25,7 @@ interface Card {
   styleUrls: ['./addcollection.component.scss']
 })
 export class AddcollectionComponent {
-  constructor(private route: Router, private router: ActivatedRoute){}
+  constructor(private route: Router, private router: ActivatedRoute, private api: ConnectAPIService){}
   id: any;
   ngOnInit(){
     this.router.queryParams.subscribe(params => {
@@ -32,44 +33,55 @@ export class AddcollectionComponent {
       console.log('ID from query params:', this.id);
     });
 
-    if (localStorage.getItem('collections') == null) localStorage.setItem('collections', JSON.stringify(this.cards));
-    let getcollections = localStorage.getItem('collections');
-    this.cards = getcollections? JSON.parse(getcollections): null;
+    this.api.GetCollection(this.id).subscribe(res=>{
+      console.log(res);
+      this.cards = res;
+   
+    })
+
 
     
   }
-title: any;
-source: any;
-description: any;
-  cards: Card[] = [];
+  title: any;
+  source: any;
+  description: any;
+  cards: any;
   insertitem: Item[]=[];
+  temp: any;
   createCollection() {
     this.title = prompt('Enter the name of your collection');
     this.source = prompt('Enter the source of the image');
     this.description = prompt('Enter description of your collection');
-    if (localStorage.getItem(this.title+'_collections') === null) localStorage.setItem(this.title+'_collections', JSON.stringify(this.insertitem));
-    let thiscollection = localStorage.getItem('collections');
-    this.insertitem = thiscollection? JSON.parse(thiscollection): null;
-    this.cards.push({
+    let cards = ({
       title: this.title,
       source: this.source,
       description: this.description,
-      item: this.insertitem
+      sellerid: this.id
     });
+    this.api.AddCollection(cards).subscribe(res=>{
+      console.log(res);
+      this.api.GetCollection(this.id).subscribe(cltn=>{
+        this.cards = cltn;
+        
+      })
+    })
 
     
 
-    
-    localStorage.setItem('collections', JSON.stringify(this.cards));
-    let getcollections = localStorage.getItem('collections');
-    this.cards = getcollections? JSON.parse(getcollections): null;
-    
-   
    console.log(this.title)
   }
 
-  addItem(title: any){
-    this.route.navigate(['/additem'], {queryParams: {category: title, id: this.id}});
+  addItem(title: any, clid: any){
+    this.route.navigate(['/additem'], {queryParams: {category: title, id: this.id, cid: clid}});
+  }
+
+  DeleteCollection(id: number){
+    this.api.DeleteCollectionAPI(id).subscribe(res => {
+      console.log(res);
+      this.api.GetCollection(this.id).subscribe(cltn=>{
+        this.cards = cltn;
+      })
+    })
   }
 
 }

@@ -14,12 +14,7 @@ export class SellerLoginComponent {
   visibility = false;
   id: any;
   getusers: any;
-  ngOnInit() {
-    const list = localStorage.getItem('sellers');
-    this.getusers = list !== null ? JSON.parse(list) : null;
-
-
-  }
+  ngOnInit() {}
 
 
   form = new FormGroup({
@@ -53,7 +48,7 @@ export class SellerLoginComponent {
     // localStorage.setItem('sellerid', JSON.stringify(this.form.value.username));
 
     // if (!this.rightCredentials) alert('Wrong credentials')
-    this.authservice.isAuthenticatedSeller();
+    this.authservice.sellerLogin(this.form.value.username, this.form.value.password);
   }
 
   toggleVisibility() {

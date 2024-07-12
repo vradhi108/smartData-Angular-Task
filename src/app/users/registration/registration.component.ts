@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RandomUseridGenerationService } from '../services/random-userid-generation.service';
-import { ConnectAPIService } from '../services/connect-api.service';
+import { RandomUseridGenerationService } from '../../services/random-userid-generation.service';
+import { ConnectAPIService } from '../../services/connect-api.service';
 
 interface Country{
   name: string;

@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './users/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UserPageComponent } from './user-page/user-page.component';
-import { RegistrationComponent } from './registration/registration.component';
+import { UserPageComponent } from './users/user-page/user-page.component';
+import { RegistrationComponent } from './users/registration/registration.component';
 import { BlockCopyPasteDirective } from './Directives/copy-paste-block.directive';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ForgotPasswordComponent } from './users/forgot-password/forgot-password.component';
 import { SuperAdminRoutingModule } from './super-admin/super-admin-routing.module';
 import { SuperAdminModule } from './super-admin/super-admin.module';
 import {NavbarHeaderComponent} from './Headers/navbar-header/navbar.header';
@@ -16,6 +16,8 @@ import { SellerLoginComponent } from './seller/seller-login/seller-login.compone
 import { SellerRoutingModule } from './seller/seller-routing.module';
 import { SellerModule } from './seller/seller.module';
 import { HttpClientModule } from '@angular/common/http';
+import { UsersRoutingModule } from './users/users-routing.module';
+import { UsersModule } from './users/users.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,8 +37,9 @@ import { HttpClientModule } from '@angular/common/http';
     SuperAdminModule,
     SellerRoutingModule,
     SellerModule,
-    HttpClientModule
-    
+    HttpClientModule,
+    UsersRoutingModule,
+    UsersModule
   ],
   providers: [],
   bootstrap: [AppComponent]

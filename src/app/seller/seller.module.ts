@@ -7,13 +7,15 @@ import { AddcollectionComponent } from './addcollection/addcollection.component'
 import { AddItemComponent } from './add-item/add-item.component';
 import { AdditemdetailsComponent } from './additemdetails/additemdetails.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ShowproductsComponent } from './showproducts/showproducts.component';
 @NgModule({
   declarations: [
     SellerprofileComponent,
     HeaderComponent,
     AddcollectionComponent,
     AddItemComponent,
-    AdditemdetailsComponent
+    AdditemdetailsComponent,
+    ShowproductsComponent
   ],
   imports: [
     CommonModule,

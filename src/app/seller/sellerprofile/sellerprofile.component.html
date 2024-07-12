@@ -15,12 +15,12 @@
           <div class="col-md-6 offset-md-3">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">{{ sellers.userid }}</h4>
-                <p class="card-text">First name: {{ sellers.firstname }}</p>
-                <p class="card-text">Last name: {{ sellers.lastname }}</p>
-                <p class="card-text">Phone: {{ sellers.phonenumber }}</p>
-                <p class="card-text">Email: {{ sellers.emailid }}</p>
-                <p class="card-text">Password: {{ sellers.sellerpassword }}</p>
+                <h4 class="card-title">#{{ sellers[0].userid }}</h4>
+                <p class="card-text">First name: {{ sellers[0].firstname }}</p>
+                <p class="card-text">Last name: {{ sellers[0].lastname }}</p>
+                <p class="card-text">Phone: {{ sellers[0].phonenumber }}</p>
+                <p class="card-text">Email: {{ sellers[0].emailid }}</p>
+                <p class="card-text">Password: {{ sellers[0].sellerpassword }}</p>
                 <p class="card-text" style="color: green">Status: Active</p>
                 <button class="btn btni btn-success">Edit</button>
               </div>

@@ -1,30 +1,34 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { ConnectAPIService } from 'src/app/services/connect-api.service';
 @Component({
   selector: 'app-sellerprofile',
   templateUrl: './sellerprofile.component.html',
   styleUrls: ['./sellerprofile.component.scss']
 })
 export class SellerprofileComponent {
-  constructor(private route: ActivatedRoute){};
-  id: any;
+  constructor(private route: ActivatedRoute, private api: ConnectAPIService){};
+  userid: any;
   getsellers: any;
   sellers: any;
   mysellers: any;
   ngOnInit(){
     this.route.queryParams.subscribe(params => {
-      this.id = params['id'];
-      console.log('ID from query params:', this.id);
+      this.userid = params['id'];
+      console.log('ID from query params:', this.userid);
     });
-
-    // if (localStorage.getItem('sellers') === null) localStorage.setItem('sellers', JSON.stringify(this.getsellers));
-    this.getsellers = localStorage.getItem('sellers');
-    this.mysellers = this.getsellers? JSON.parse(this.getsellers): null;
+    this.api.getseller(this.userid).subscribe(res=>{
+      this.sellers = res;
+        localStorage.setItem('sellerid', JSON.stringify(this.sellers[0].id));
+        localStorage.setItem('useridstring', JSON.stringify(this.userid));
+    
+      console.log('this is my res for sellers',res)
+    })
+    
     
 
       this.mysellers.forEach((element: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; sellerpassword: any; status: any;}) => {
-        if (element.userid === this.id){
+        if (element.userid === this.userid){
           this.sellers = element;
         }
       });

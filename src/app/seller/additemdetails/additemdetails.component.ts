@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { ActivatedRoute, Router } from '@angular/router';
 import { RandomUseridGenerationService } from 'src/app/services/random-userid-generation.service';
 import { HttpClient } from '@angular/common/http';
+import { ConnectAPIService } from 'src/app/services/connect-api.service';
 
 interface Item {
   productid: string;
@@ -31,7 +32,7 @@ export class AdditemdetailsComponent {
 
   form: any;
   constructor(private router: Router, private RandomUserId: RandomUseridGenerationService, 
-    private route: ActivatedRoute, private formBuilder: FormBuilder, private http: HttpClient ) {
+    private route: ActivatedRoute, private formBuilder: FormBuilder, private http: HttpClient, private api: ConnectAPIService ) {
       this.form = this.formBuilder.group({
         product_name: new FormControl('', Validators.required),
         product_category: new FormControl('', Validators.required),
@@ -47,12 +48,13 @@ export class AdditemdetailsComponent {
      addinnewuser: any[]=[]
      obj: any;
      sellerid: any;
-
+     cid: any;
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.Id = params['Id'];
       console.log('ID from query params:', this.Id);
       this.toEdit = params['edit'];
+      this.cid = params['cid'];
       this.sellerid = params['sellerid'];
       this.collection_name = params['collection_name'];
     });
@@ -130,53 +132,20 @@ export class AdditemdetailsComponent {
   }
 
   addItem() {
-    this.addinnewuser.push({
-      productid: this.Id? this.Id: null,
-      name: this.form.get('product_name')?.value,
-      type: this.form.get('product_category')?.value,
-      source: this.form.get('product_image')?.value,
-      description: this.form.get('product_details')?.value,
-      price: this.form.get('product_price')?.value,
-      quantity: this.form.get('product_quantity')?.value,
-      custom: this.form.get('customFields')?.value,
-    });
-    console.log(this.newuser)
-    this.newuser.forEach((element: {title: any; source: any; description: any; item:{productid: any; name: any;
-      type: any; source: any; quantity: any;description: any;price: any;custom: any;
-    }}) => {
-
-      if(element.title === this.collection_name){
-        element.item.productid = this.Id;
-        element.item.name  = this.form.get('product_name')?.value;
-        element.item.type= this.form.get('product_category')?.value;
-        element.item.source= this.form.get('product_image')?.value;
-        element.item.description= this.form.get('product_details')?.value;
-        element.item.price= this.form.get('product_price')?.value;
-        element.item.quantity= this.form.get('product_quantity')?.value;
-        element.item.custom= this.form.get('customFields')?.value;
-      }
-
-    });
-    
-
-    localStorage.setItem('collections', JSON.stringify(this.newuser));
-    let getitems = localStorage.getItem('collections');
-    this.newuser = getitems ? JSON.parse(getitems) : null;
-
-    this.router.navigate(['/additem'], {queryParams: {category: this.form.value.product_category, id: this.sellerid}});
-
-    // const formData = new FormData();
-    // debugger;
-    // formData.append('image', this.selectedFile, this.selectedFile.name);
-
-    // this.http.post('../../../assets/', formData).subscribe(
-    //   (response) => {
-    //     console.log('File uploaded successfully');
-    //   },
-    //   (error) => {
-    //     console.error('Error uploading file:', error);
-    //   }
-    // );
+    let obj={
+      product_name: this.form.value.product_name,
+      product_details: this.form.value.product_details,
+      product_price: this.form.value.product_price,
+      product_image: this.form.value.product_image,
+      product_quantity: this.form.value.product_quantity,
+      product_category: this.form.value.product_category,
+      collectionid: this.cid,
+      sellerid: this.sellerid
+    }
+    this.api.AddProducts(obj).subscribe(res=>{
+      console.log(res);
+      this.router.navigate(['/additem'], {queryParams: {category: this.collection_name, id: this.sellerid, cid: this.cid}});
+    })
   }
 
   addfield = false;

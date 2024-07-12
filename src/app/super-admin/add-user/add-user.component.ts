@@ -29,7 +29,12 @@ export class AddUserComponent {
   });
   // console.log(this.id);
   // console.log(this.value);
-  this.edituser();
+  if(this.value == 1){
+    this.api.getseller(this.id).subscribe(res=>{
+      console.log('adfasdfasf',res);
+      this.adduser.patchValue(res);
+    })
+  }
 }
 
   adduser = new FormGroup({
@@ -129,22 +134,28 @@ export class AddUserComponent {
   }
 
 
-  confirmEdit(){
-    this.newuser.forEach((element: { userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; sellerpassword: any;}) => {
-      if (element.userid === this.id){
-        element.userid = this.adduser.value.userid,
-        element.firstname = this.adduser.value.firstname,
-        element.lastname = this.adduser.value.lastname,
-        element.emailid = this.adduser.value.emailid,
-        element.phonenumber = this.adduser.value.phonenumber,
-        element.sellerpassword = this.adduser.value.sellerpassword
-      }
-      
-      
-    });
 
-      localStorage.setItem('sellers', JSON.stringify(this.newuser));
-      alert('Seller edited.')
+  confirmEdit(){
+    this.api.getseller(this.id).subscribe(res=>{
+      this.newuser = res;
+
+      this.newuser.forEach((element: {Id: any; userid: any; firstname: any; lastname: any; emailid: any; phonenumber: any; sellerpassword: any;}) => {
+        if (element.Id === this.id){
+          element.userid = this.adduser.value.userid,
+          element.firstname = this.adduser.value.firstname,
+          element.lastname = this.adduser.value.lastname,
+          element.emailid = this.adduser.value.emailid,
+          element.phonenumber = this.adduser.value.phonenumber,
+          element.sellerpassword = this.adduser.value.sellerpassword
+        }
+      });
+
+      this.api.updateseller(this.newuser).subscribe(res=>{
+        console.log(res);
+      })
+    })
+    
+
      
   }
 
